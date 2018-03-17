@@ -14,28 +14,24 @@ import {
 // Library so ButtonGroup can be used instead of individual buttons
 import { ButtonGroup } from 'react-native-elements';
 
+// Imports Icon library for geolocation icon
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 // Import dropoffs data
 var data = require('./deliveries-sample.json');
-
-var moment = require('moment');
-moment().format();
 
 export default class App extends React.Component {
   constructor() {
     super();
     this.state = {
       selectedIndex: 0,
-      currentData: [],
-      tueData: [],
-      wedData: [],
-      thurData: [],
-      friData: [],
       selectedData: [],
       selectedDate: ''
     };
     this.updateIndex = this.updateIndex.bind(this);
   }
 
+  // Sets the correct weekday data according to the button group index
   updateIndex(selectedIndex) {
     this.setState({ selectedIndex });
     if (selectedIndex == 0) {
@@ -51,10 +47,12 @@ export default class App extends React.Component {
     }
   }
 
+  // Sets the 'default' data to the current day (monday)
   componentWillMount() {
     this.state.selectedData = data.dropoffs[0].deliveries;
   }
 
+  // Checks if the cuttoff time has passed
   checkCutoff(cutoffPassed) {
     if (cutoffPassed == true) {
       return 'Cut-Off Time Passed';
@@ -79,17 +77,26 @@ export default class App extends React.Component {
     const { selectedIndex } = this.state;
     return (
       <View style={styles.container}>
-        <Text
+        <View
           style={{
-            padding: 10,
-            justifyContent: 'center',
+            flexDirection: 'row',
+            alignItems: 'center',
             marginLeft: 'auto',
             marginRight: 'auto'
           }}
         >
-          5700 Boradmoor - Mission Towers {'\n'}
-          5700 Boradmoor Street, Mission, KS
-        </Text>
+          <Icon name="map-marker" size={30} color="black" />
+          <Text
+            style={{
+              padding: 10,
+              justifyContent: 'center',
+              marginRight: 'auto'
+            }}
+          >
+            5700 Boradmoor - Mission Towers {'\n'}
+            5700 Boradmoor Street, Mission, KS
+          </Text>
+        </View>
 
         <ButtonGroup
           onPress={this.updateIndex}
