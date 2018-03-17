@@ -17,6 +17,9 @@ import { ButtonGroup } from 'react-native-elements';
 // Import dropoffs data
 var data = require('./deliveries-sample.json');
 
+var moment = require('moment');
+moment().format();
+
 export default class App extends React.Component {
   constructor() {
     super();
@@ -52,6 +55,25 @@ export default class App extends React.Component {
     this.state.selectedData = data.dropoffs[0].deliveries;
   }
 
+  checkCutoff(cutoffPassed) {
+    if (cutoffPassed == true) {
+      return 'Cut-Off Time Passed';
+    } else {
+      return 'Ordering Still Available';
+    }
+  }
+
+  // Formats date
+  formatDate(date) {
+    var timeString = date;
+    var H = +timeString.substr(0, 2);
+    var h = H % 12 || 12;
+    var ampm = h < 12 || H === 24 ? ' AM' : ' PM';
+    timeString = h + timeString.substr(2, 3) + ampm;
+
+    return timeString;
+  }
+
   render() {
     const buttons = ['Today', 'Tue', 'Wed', 'Thur', 'Fri'];
     const { selectedIndex } = this.state;
@@ -75,7 +97,7 @@ export default class App extends React.Component {
           buttons={buttons}
           containerStyle={{ height: 40 }}
           style={{ alignItems: 'flex-start' }}
-          selectedButtonStyle={{ backgroundColor: 'powderblue' }}
+          selectedButtonStyle={{ backgroundColor: 'skyblue' }}
         />
 
         <FlatList
@@ -115,12 +137,30 @@ export default class App extends React.Component {
                   </View>
                   <View style={{ paddingLeft: 25 }}>
                     <Text style={styles.timeBox}>
-                      {item.cutoff.slice(0, -3)}
+                      {this.formatDate(item.cutoff)}
                     </Text>
                     <Text style={styles.timeBox}>
-                      {item.dropoff.slice(0, -3)}
+                      {this.formatDate(item.dropoff)}
                     </Text>
                   </View>
+                </View>
+                <View
+                  style={{
+                    backgroundColor: 'skyblue',
+                    borderColor: 'black',
+                    borderWidth: 1,
+                    marginTop: 9
+                  }}
+                >
+                  <Text
+                    style={{
+                      textAlign: 'center',
+                      paddingTop: 5,
+                      paddingBottom: 5
+                    }}
+                  >
+                    {this.checkCutoff(item.isPastCutoff)}
+                  </Text>
                 </View>
               </View>
             </View>}
