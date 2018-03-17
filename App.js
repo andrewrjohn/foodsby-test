@@ -27,13 +27,25 @@ export default class App extends React.Component {
       wedData: [],
       thurData: [],
       friData: [],
-      selectedData: []
+      selectedData: [],
+      selIndex: ''
     };
     this.updateIndex = this.updateIndex.bind(this);
   }
 
   updateIndex(selectedIndex) {
     this.setState({ selectedIndex });
+    if (selectedIndex == 0) {
+      this.state.selectedData = this.state.currentData;
+    } else if (selectedIndex == 1) {
+      this.state.selectedData = this.state.tueData;
+    } else if (selectedIndex == 2) {
+      this.state.selectedData = this.state.wedData;
+    } else if (selectedIndex == 3) {
+      this.state.selectedData = this.state.thurData;
+    } else if (selectedIndex == 4) {
+      this.state.selectedData = this.state.friData;
+    }
   }
 
   componentWillMount() {
@@ -63,12 +75,7 @@ export default class App extends React.Component {
           5700 Boradmoor - Mission Towers {'\n'}
           5700 Boradmoor Street, Mission, KS
         </Text>
-        <Button
-          onPress={this.tuePress}
-          title="Learn More"
-          color="#841584"
-          accessibilityLabel="Learn more about this purple button"
-        />
+
         <ButtonGroup
           onPress={this.updateIndex}
           selectedIndex={selectedIndex}
@@ -77,7 +84,9 @@ export default class App extends React.Component {
           style={{ alignItems: 'flex-start' }}
           selectedButtonStyle={{ backgroundColor: 'powderblue' }}
         />
-
+        <Text>
+          {this.state.selIndex}
+        </Text>
         <FlatList
           data={this.state.selectedData}
           renderItem={({ item }) =>
