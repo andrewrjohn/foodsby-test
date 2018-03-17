@@ -93,23 +93,25 @@ export default class App extends React.Component {
             <View
               style={{
                 display: 'flex',
+                flexDirection: 'row',
                 borderBottomWidth: 1,
-                borderBottomColor: 'black'
+                borderBottomColor: 'black',
+                padding: 10
               }}
             >
               <Image
-                style={{ width: 50, height: 50 }}
+                style={{ width: 100, height: 100 }}
                 source={{
                   uri: item.logoUrl
                 }}
               />
               <Text
                 style={{
-                  paddingBottom: 10
+                  paddingLeft: 10
                 }}
               >
-                {item.restaurantName} {'\n'} Order By: {item.cutoff} {'\n'}{' '}
-                Delivery Time: {item.dropoff}
+                {item.restaurantName} {'\n'}Order By: {item.cutoff}
+                {'\n'}Delivery Time: {item.dropoff}
               </Text>
             </View>}
         />
@@ -122,7 +124,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
     justifyContent: 'flex-start',
     paddingTop: 40
   }
