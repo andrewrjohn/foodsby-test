@@ -1,4 +1,20 @@
+## instructions
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
+
+All instructions regarding running the application should be found below.
+
+In essence, here are the steps:
+* Clone Repository
+* Run
+###` npm start`
+* Your Terminal or Command Prompt window will display a QR code
+* Download the Exp app
+** [Android]('https://play.google.com/store/apps/details?id=host.exp.exponent&hl=en')
+** [iOS]('https://itunes.apple.com/us/app/expo-client/id982107779?mt=8')
+* Open Expo app, and scan QR code
+* App should launch
+
+For more specfic commands and troubleshooting, see below.
 
 
 ## Table of Contents
@@ -20,13 +36,6 @@ This project was bootstrapped with [Create React Native App](https://github.com/
   * [iOS Simulator won't open](#ios-simulator-wont-open)
   * [QR Code does not scan](#qr-code-does-not-scan)
 
-## Updating to New Releases
-
-You should only need to update the global installation of `create-react-native-app` very rarely, ideally never.
-
-Updating the `react-native-scripts` dependency of your app should be as simple as bumping the version number in `package.json` and reinstalling your project's dependencies.
-
-Upgrading to a new version of React Native requires updating the `react-native`, `react`, and `expo` package versions, and setting the correct `sdkVersion` in `app.json`. See the [versioning guide](https://github.com/react-community/create-react-native-app/blob/master/VERSIONS.md) for up-to-date information about package version compatibility.
 
 ## Available Scripts
 
