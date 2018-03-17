@@ -5,8 +5,7 @@ All instructions regarding running the application should be found below.
 
 In essence, here are the steps:
 * Clone Repository
-* Run
-###` npm start`
+* Run ` npm start`
 * Your Terminal or Command Prompt window will display a QR code
 * Download the Exp app
 ** [Android]('https://play.google.com/store/apps/details?id=host.exp.exponent&hl=en')
