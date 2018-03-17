@@ -4,12 +4,13 @@ This project was bootstrapped with [Create React Native App](https://github.com/
 All instructions regarding running the application should be found below.
 
 In essence, here are the steps:
-* Clone Repository
+* Clone repository
+* CD to directory
 * Run ` npm start`
 * Your Terminal or Command Prompt window will display a QR code
 * Download the Exp app
-** [Android]('https://play.google.com/store/apps/details?id=host.exp.exponent&hl=en')
-** [iOS]('https://itunes.apple.com/us/app/expo-client/id982107779?mt=8')
+** [Android](https://play.google.com/store/apps/details?id=host.exp.exponent&hl=en)
+** [iOS](https://itunes.apple.com/us/app/expo-client/id982107779?mt=8)
 * Open Expo app, and scan QR code
 * App should launch
 
