@@ -28,7 +28,7 @@ export default class App extends React.Component {
       thurData: [],
       friData: [],
       selectedData: [],
-      selIndex: ''
+      selectedDate: ''
     };
     this.updateIndex = this.updateIndex.bind(this);
   }
@@ -36,29 +36,20 @@ export default class App extends React.Component {
   updateIndex(selectedIndex) {
     this.setState({ selectedIndex });
     if (selectedIndex == 0) {
-      this.state.selectedData = this.state.currentData;
+      this.state.selectedData = data.dropoffs[0].deliveries;
     } else if (selectedIndex == 1) {
-      this.state.selectedData = this.state.tueData;
+      this.state.selectedData = data.dropoffs[1].deliveries;
     } else if (selectedIndex == 2) {
-      this.state.selectedData = this.state.wedData;
+      this.state.selectedData = data.dropoffs[2].deliveries;
     } else if (selectedIndex == 3) {
-      this.state.selectedData = this.state.thurData;
+      this.state.selectedData = data.dropoffs[3].deliveries;
     } else if (selectedIndex == 4) {
-      this.state.selectedData = this.state.friData;
+      this.state.selectedData = data.dropoffs[4].deliveries;
     }
   }
 
   componentWillMount() {
-    this.state.currentData = data.dropoffs[0].deliveries;
-    this.state.tueData = data.dropoffs[1].deliveries;
-    this.state.wedData = data.dropoffs[2].deliveries;
-    this.state.thurData = data.dropoffs[3].deliveries;
-    this.state.friData = data.dropoffs[4].deliveries;
-    this.state.selectedData = this.state.currentData;
-  }
-
-  tuePress() {
-    this.state.selectedData = data.dropoffs[1].deliveries;
+    this.state.selectedData = data.dropoffs[0].deliveries;
   }
 
   render() {
@@ -69,7 +60,9 @@ export default class App extends React.Component {
         <Text
           style={{
             padding: 10,
-            justifyContent: 'center'
+            justifyContent: 'center',
+            marginLeft: 'auto',
+            marginRight: 'auto'
           }}
         >
           5700 Boradmoor - Mission Towers {'\n'}
@@ -84,9 +77,7 @@ export default class App extends React.Component {
           style={{ alignItems: 'flex-start' }}
           selectedButtonStyle={{ backgroundColor: 'powderblue' }}
         />
-        <Text>
-          {this.state.selIndex}
-        </Text>
+
         <FlatList
           data={this.state.selectedData}
           renderItem={({ item }) =>
@@ -95,25 +86,45 @@ export default class App extends React.Component {
                 display: 'flex',
                 flexDirection: 'row',
                 borderBottomWidth: 1,
-                borderBottomColor: 'black',
+                borderBottomColor: 'lightgrey',
                 padding: 10
               }}
             >
               <Image
-                style={{ width: 100, height: 100 }}
+                style={{ width: 125, height: 125 }}
                 source={{
                   uri: item.logoUrl
                 }}
               />
-              <Text
-                style={{
-                  paddingLeft: 10
-                }}
-              >
-                {item.restaurantName} {'\n'}Order By: {item.cutoff}
-                {'\n'}Delivery Time: {item.dropoff}
-              </Text>
+              <View style={{ paddingLeft: 5 }}>
+                <Text
+                  style={{
+                    fontSize: 16,
+                    fontStyle: 'italic',
+                    color: 'red',
+                    paddingBottom: 5,
+                    paddingTop: 5
+                  }}
+                >
+                  {item.restaurantName}
+                </Text>
+                <View style={{ flexDirection: 'row', paddingTop: 10 }}>
+                  <View style={{}}>
+                    <Text>Order By:</Text>
+                    <Text>Delivery Time:</Text>
+                  </View>
+                  <View style={{ paddingLeft: 25 }}>
+                    <Text style={styles.timeBox}>
+                      {item.cutoff.slice(0, -3)}
+                    </Text>
+                    <Text style={styles.timeBox}>
+                      {item.dropoff.slice(0, -3)}
+                    </Text>
+                  </View>
+                </View>
+              </View>
             </View>}
+          keyExtractor={(item, index) => index}
         />
       </View>
     );
@@ -124,7 +135,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    justifyContent: 'flex-start',
     paddingTop: 40
+  },
+  timeBox: {
+    borderWidth: 1,
+    borderColor: 'black',
+    paddingRight: 40,
+    paddingLeft: 5
   }
 });
