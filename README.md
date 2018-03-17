@@ -1,4 +1,4 @@
-## instructions
+## Instructions
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
 
 All instructions regarding running the application should be found below.
